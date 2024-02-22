@@ -61,20 +61,23 @@ import { EVENT_TIMESTAMP } from "@/consts/event-date"
       const now = Date.now()
       const diff = date - now
 
+      //Asegurarse de que el tiempo no sea negativo
+      const remainingTime = Math.max(diff, 0)
+
       if ($days instanceof HTMLElement) {
-        $days.innerText = formatTime(diff / DAY)
+        $days.innerText = formatTime(remainingTime / DAY)
       }
 
       if ($hours instanceof HTMLElement) {
-        $hours.innerText = formatTime((diff % DAY) / HOUR)
+        $hours.innerText = formatTime((remainingTime % DAY) / HOUR)
       }
 
       if ($minutes instanceof HTMLElement) {
-        $minutes.innerText = formatTime((diff % HOUR) / MINUTE)
+        $minutes.innerText = formatTime((remainingTime % HOUR) / MINUTE)
       }
 
       if ($seconds instanceof HTMLElement) {
-        $seconds.innerText = formatTime((diff % MINUTE) / SECOND)
+        $seconds.innerText = formatTime((remainingTime % MINUTE) / SECOND)
       }
     }
 
